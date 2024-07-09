@@ -18,7 +18,7 @@ pipeline {
         stage('clone repository') {
             steps {
             git branch:'main',credentialsId:'github-token', 
-                        url:'https://github.com/wooshinkwak/test_jenkins2.git'
+                        url:'https://github.com/joyjelly/test_jenkins2.git'
            }
         }
 
