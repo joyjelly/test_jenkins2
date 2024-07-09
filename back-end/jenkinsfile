@@ -9,9 +9,9 @@ pipeline {
         JAVA_HONE ='C:\\dev\\java-11-openjdk-11.0.15.9-1' //자바가 설치 된 경로
         PATH="${env.JAVA_HOME}\\bin;${env.PATH}"
     }
-    trigger{
-        pollSCM('H/6 * * * 1-5')
-    }
+    // trigger{
+    //     pollSCM('H/6 * * * 1-5')
+    // }
 
     stages {
         stage('clone repository') {
