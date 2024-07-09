@@ -1,13 +1,38 @@
 pipeline {
     agent any
+    
+    tools{
+        maven 'Maven' //젠킨스 tools의 설정한 Maven 이름
+    }
+
+    environment{
+        JAVA_HONE ='C:\\dev\\java-11-openjdk-11.0.15.9-1' //자바가 설치 된 경로
+        PATH="${env.JAVA_HOME}\\bin;${env.PATH}"
+    }
+    trigger{
+        pollSCM('H/6 * * * 1-5')
+    }
 
     stages {
-        stage('Hello') {
+        stage('clone repository') {
             steps {
                 git branch : 'main', 
                 credentialsId:'github-token', 
                 url : 'https://github.com/joyjelly/test_jenkins2.git'
             }
         }
+
+        stage('build WAR'){
+            steps{
+                scipt{
+                    def mvnHome = tool name:'Maven', type:'hudson.task.Maven$MavenInstallation'
+                    withEnv(["MAVEN_HOME=${mvnHome}"]){
+                        //pom.xml의 버전노드의 이름으로 war가 tatget 디렉토리에 생성된다.
+                        bat "\"${mvnHome}\\bin\\mvn\" clean package-DskipTests"
+                    }
+                }
+            }
+        }
+
     }
 }
