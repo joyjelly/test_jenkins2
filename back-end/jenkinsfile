@@ -24,7 +24,7 @@ pipeline {
 
         stage('build WAR'){
             steps{
-                scipt{
+                script{
                     def mvnHome = tool name:'Maven', type:'hudson.task.Maven$MavenInstallation'
                     withEnv(["MAVEN_HOME=${mvnHome}"]){
                         //pom.xml의 버전노드의 이름으로 war가 tatget 디렉토리에 생성된다.
