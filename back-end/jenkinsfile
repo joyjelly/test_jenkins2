@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment{
-        JAVA_HOME = 'D:\\dev\\java-11-openjdk-11.0.15.9-1' //자바가 설치된 경로
+        JAVA_HOME = 'C:\\dev\\java-11-openjdk-11.0.15.9-1' //자바가 설치된 경로
         PATH = "${env.JAVA_HOME}\\bin;${env.PATH}"
     }
 
